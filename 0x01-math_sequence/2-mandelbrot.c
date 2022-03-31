@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <holberton.h>
+#include <stdio.h>
 
 /**
 * mandelbrot - do the mandel bro
