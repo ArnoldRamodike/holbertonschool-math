@@ -1,7 +1,7 @@
 /*
 * 3-main.c - Call Julia
-* Author: Rodrigo Zárate Algecira
-* Date: August 16, 2021
+* Author: Arnold Ramodike
+* Date: 31/03/2022
 */
 
 #include "julia.h"
