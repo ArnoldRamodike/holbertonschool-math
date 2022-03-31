@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 /**
 * mandelbrot - do the mandel bro
