@@ -1,9 +1,3 @@
-/*
-* 3-main.c - Call Julia
-* Author: Arnold Ramodike
-* Date: 31/03/2022
-*/
-
 #include "julia.h"
 
 /**
