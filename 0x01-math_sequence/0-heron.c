@@ -1,75 +1,36 @@
-#include <math.h>
+
 #include "heron.h"
-
 /**
-* add_node - add node
-* @tpt: pointer
-* @v: double
-* Return: node
-*/
-
-t_cell *add_node(t_cell **tpt, double v)
-{
-t_cell *tempnode;
-
-tempnode = *tpt;
-
-/* firts time */
-	if (tempnode == NULL)
-	{
-	tempnode = malloc(sizeof(t_cell));
-	/* malloc goes wrong */
-		if (tempnode == NULL)
-			free(tempnode);
-
-	tempnode->elt = v;
-	tempnode->next = NULL;
-	}
-	else
-	{
-	tempnode = malloc(sizeof(t_cell));
-		if (tempnode == NULL)
-			free(tempnode);
-
-	tempnode->elt = v;
-	tempnode->next = *tpt;
-	}
-/* pointer set to new node adress */
-*tpt = tempnode;
-
-return (tempnode);
-}
-
-/**
-* heron - Return Heron secuence
-* @p: double
-* @x0: double
-* Return: list
-*/
-/* receive params */
+ * heron - Create Heron Sequence
+ * @p: number to calculate the root
+ * @x0: first number of variable
+ * Return: The Heron sequence
+ */
 t_cell *heron(double p, double x0)
 {
-t_cell *thenode = NULL, *list;
-double value = x0;
-double comp = p / 2;
-double aprox = 0;
+	double fx = 0, _error = 0;
+	t_cell *head = NULL, *new = NULL, *tail;
 
-	while (comp != aprox)
-	{
-	/* another way of do the heron */
-		aprox = comp;
-		comp = (p / aprox + aprox) / 2;
-	}
+	new = malloc(sizeof(t_cell));
+	if (!new)
+		return (NULL);
 
-/* iterate over value */
-	while (comp != value)
-	{
-	/* do the math */
-	value = 0.5 * (value + (p / value));
+	fx = x0;
 
-	/* Populate node list */
-	list = add_node(&thenode, value);
-	}
-/* Return list */
-return (list);
+	head = new;
+	new->elt = fx;
+	new->next = NULL;
+	_error = ((fx * fx) - p);
+	_error = (_error >= 0) ? _error : -(_error);
+	if (_error <= 0.0000001)
+		return (head);
+
+	fx = (0.5) * (x0 + (p / x0));
+	head = heron(p, fx);
+	tail = head;
+	while (tail->next)
+		tail = tail->next;
+	tail->next = new;
+
+	return (head);
 }
